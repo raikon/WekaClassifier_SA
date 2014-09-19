@@ -1,0 +1,29 @@
+Inizio di ogni classe: 
+
+/**
+ * Main di avvio del software
+ * 
+ * @author Claudia Raponi
+ */
+
+--------------------------------------------------------------------
+
+Inizio di ogni metodo:
+
+/*
+* metodo di supporto per l'esportazione dei dati nel formato excel
+*/
+
+--------------------------------------------------------------------
+
+Specifiche all'interno di ogni metodo:
+
+/*Creazione modello di training*/
+
+--------------------------------------------------------------------
+
+Disattivazione momentanea di invocazioni:
+
+//train
+
+--------------------------------------------------------------------

@@ -1,0 +1,9 @@
+@relation export2Excel_tes
+
+@attribute Content string
+@attribute Sentiment {positive,neutral,negative}
+
+@data
+'snap fire ',positive
+'graduation right unless stop way eat ice cream fries parking lot ',positive
+'supporting seaworld ',positive
