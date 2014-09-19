@@ -27,7 +27,7 @@ import training.myFilteredLearner;
 import weka.core.Instances;
 
 /**
- * Main di avvio del software
+ * Main di avvio del software!
  * 
  * @author Claudia Raponi
  */
