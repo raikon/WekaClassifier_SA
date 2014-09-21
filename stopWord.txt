@@ -6,6 +6,7 @@ again
 against
 all
 am
+amp
 an
 and
 any
@@ -145,6 +146,7 @@ those
 through
 to
 too
+uh
 under
 until
 up

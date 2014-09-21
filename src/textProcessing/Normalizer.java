@@ -50,6 +50,8 @@ public class Normalizer {
 		s = removeStopWord(s);
 		s = removePunctuation(s);
 		
+		s = s.replaceAll("  ","");
+		
 		return s;
 	}
 

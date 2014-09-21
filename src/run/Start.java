@@ -82,7 +82,7 @@ public class Start {
 		myFilteredLearner learner = new myFilteredLearner();
 		learner.createModel("fileArff.arff", "TrainingModel.dat");
 		
-		//test();
+		test();
 		
 		System.out.println("=== Classification Completed ===");
 	}
@@ -140,7 +140,7 @@ public class Start {
 		for (int n : tweetName) {  
 		    list.add(n);  
 		}
-		tweetCodeText = dataset.importDataRandom(5,list);
+		tweetCodeText = dataset.importDataRandom(15,list);
 
 		//printMap(tweetCodeText);
 
@@ -148,7 +148,7 @@ public class Start {
 		Processor p = new Processor();
 		tweetCodeText = p.elaborationContent(tweetCodeText);
 		
-		//printMap(tweetCodeText);
+		printMap(tweetCodeText);
 		
 		/*Rimozione eventuali duplicati*/
 		tweetCodeText = removeDuplicate(tweetCodeText);
@@ -204,8 +204,7 @@ public class Start {
 
 		}
 		try {
-			FileOutputStream out = 
-					new FileOutputStream(new File(nameFile));
+			FileOutputStream out = new FileOutputStream(new File(nameFile));
 			workbook.write(out);
 			out.close();
 			System.out.println("Excel written successfully \n");

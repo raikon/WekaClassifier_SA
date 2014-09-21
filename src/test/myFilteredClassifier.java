@@ -155,13 +155,21 @@ import org.apache.poi.ss.usermodel.Row;
 		Map<String, String> result = new HashMap<String,String>();
 		instances = i;
 		int j=1;
+		String sentiment,tweet;
 		try {
 			System.out.println("\n Number of valid instances analyzed: "+instances.numInstances()+"\n");
 			for(int k=0;k<instances.numInstances();k++) {
-				double pred = classifier.classifyInstance(instances.instance(k));
 				System.out.println("===== Classified instance =====");
-				String tweet = instances.attribute(0).value(j);
-				String sentiment = instances.classAttribute().value((int) pred);
+				
+				double pred = classifier.classifyInstance(instances.instance(k));
+				
+				tweet = instances.attribute(0).value(j);
+				/*INSERIRE QUI eventuali forzature di predizione a causa delle emoticon */
+				if(tweet.equals("") || tweet.equals(" ")) 
+					sentiment = "neutral";
+				else
+					sentiment = instances.classAttribute().value((int) pred);
+				
 				System.out.println("Instance("+k+"): "+tweet);
 				System.out.println("Class predicted: " + sentiment+"\n");
 				result.put(tweet,sentiment);
