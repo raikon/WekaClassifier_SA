@@ -1,35 +1,26 @@
 package run;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 import textProcessing.Normalizer;
+
+
 
 public class prova {
 
 	public static void main(String[] args) throws IOException {
 		Normalizer n = new Normalizer();
-		String s = "\":\"ðŸ§ðŸ’™ðŸ§ðŸ’™ðŸ§\n@Luke5SOS\n\nHey Luke Hemmings from 5SOS \n \nIf you were a burger at McDonalds\nyou'd be McGorgeous\n\nPls follow me?\n\nLove youðŸ’•\n\nðŸ§ðŸ’™ðŸ§ðŸ’™ðŸ§ \nx1905";
-
+		String s = "t¢McDonald\u2019s CEO: \u2018We Pay Fair Wages\u2019: McDonald\u2019s CEO said Thursday his company\u2019s	employees are	paid	fairly and that they are provided ...";
+		
 		byte[] utf8 = s.getBytes("UTF-8");
 		String a = new String(utf8);
-		//System.out.println(a);
+		System.out.println(a);	
 		
-		byte[] utf8bis = a.getBytes("CP1252");
-		String abis = new String(utf8,"ISO-8859-1");
-		//System.out.println(abis);
-		
-		//System.out.println(removeSpecialChars(a));
-		
-		String prova = "@ddlovato: Me &amp; @dallaslovato during simpler times when we'd dress up because it was a big deal to go to McDonalds. #lateTBTÃ°Å¸ï¿½â€Ã¢ï¿½Â¤Ã¯Â¸ï¿½ http://t\u2026";
-		
-		System.out.println(n.cleanText(prova));
+		String str = "THIS GUYS AT THE MCDONALDS DRIVE THRU &gt;&gt;&gt;&gt; Ã°Å¸Ëœï¿½ omgomgomg";
+		System.out.println(n.cleanText(str));
 		
 	}
-
+	
 	public static String removeSpecialChars(String content) throws IOException {
 		content = content
 				.replaceAll("â‚¬","€")

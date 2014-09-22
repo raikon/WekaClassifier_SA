@@ -35,8 +35,13 @@ public class Normalizer {
 	public String cleanText(String onlyRawText) throws IOException {
 		String s;
 		//s = manageHashTag(onlyRawText);
+		
+		byte[] utf8 = onlyRawText.getBytes("UTF-8");
+		s = new String(utf8);
+		
+		s = removeHTMLCharacterEntities(s);
 				
-		s = normalizeText(onlyRawText);
+		s = normalizeText(s);
 		
 		ArrayList<String>  a = translateSlang(s); 
 		s = a.get(0).toLowerCase(); 
@@ -54,7 +59,25 @@ public class Normalizer {
 		
 		return s;
 	}
-
+	
+	/*
+	 * Traduzione dei termini relativi alle entità html
+	 */
+	public String removeHTMLCharacterEntities(String content) throws IOException {
+		content = content
+				.replaceAll("&nbsp;"," ")
+				.replaceAll( "&lt;", "<")
+				.replaceAll("&gt;",">")
+				.replaceAll("&amp;","&")
+				.replaceAll("&cent;","¢")
+				.replaceAll("&pound;","£")
+				.replaceAll("&yen;","¥")
+				.replaceAll("&euro;","€")
+				.replaceAll("&copy;","©")
+				.replaceAll("&reg;","®");
+		return content;
+	}
+	
 	/*
 	 * Traduzione dei termini dello slang
 	 */
@@ -154,7 +177,7 @@ public class Normalizer {
 		String[] textS = createSingleArray(slang);
 		String[] textST = createSingleArray(slangTranslate);
 		
-		for (int i=0;i<5453;i++) {
+		for (int i=0;i<5462;i++) {
 			dict.put(textS[i],textST[i]);
 		}
 		return dict;
@@ -165,7 +188,7 @@ public class Normalizer {
 	 */
 	public String[] createSingleArray(File sFile) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(sFile));
-		String[] array = new String[5453];
+		String[] array = new String[5462];
 		String text;
 		int i=0;
 		while ((text = reader.readLine()) != null) {
