@@ -81,9 +81,9 @@ public class myFilteredLearner {
 			NGramTokenizer tokenizer = new NGramTokenizer(); 
 			String[] options = new String[6]; 
 			options[0] = "-max"; 
-			options[1] = "3"; 
+			options[1] = "2"; 
 			options[2] = "-min"; 
-			options[3] = "3"; 
+			options[3] = "1"; 
 			options[4] = "-delimiters"; 
 			options[5] = " \r"; 
 			tokenizer.setOptions(options);
@@ -143,9 +143,9 @@ public class myFilteredLearner {
 			NGramTokenizer tokenizer = new NGramTokenizer(); 
 			String[] options = new String[6]; 
 			options[0] = "-max"; 
-			options[1] = "3"; 
+			options[1] = "2"; 
 			options[2] = "-min"; 
-			options[3] = "3"; 
+			options[3] = "1"; 
 			options[4] = "-delimiters"; 
 			options[5] = " \r"; 
 			tokenizer.setOptions(options);
@@ -206,7 +206,7 @@ public class myFilteredLearner {
 		options[0] = "-max"; 
 		options[1] = "2"; 
 		options[2] = "-min"; 
-		options[3] = "2"; 
+		options[3] = "1"; 
 		options[4] = "-delimiters"; 
 		options[5] = " \r"; 
 

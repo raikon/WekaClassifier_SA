@@ -10,14 +10,17 @@ public class prova {
 
 	public static void main(String[] args) throws IOException {
 		Normalizer n = new Normalizer();
-		String s = "t¢McDonald\u2019s CEO: \u2018We Pay Fair Wages\u2019: McDonald\u2019s CEO said Thursday his company\u2019s	employees are	paid	fairly and that they are provided ...";
+		String s = "please follow meeeeee, mcdonalds is the best and tastiest place that has ever existed !";
 		
 		byte[] utf8 = s.getBytes("UTF-8");
 		String a = new String(utf8);
-		System.out.println(a);	
+		//System.out.println(a);	
 		
 		String str = "THIS GUYS AT THE MCDONALDS DRIVE THRU &gt;&gt;&gt;&gt; Ã°Å¸Ëœï¿½ omgomgomg";
-		System.out.println(n.cleanText(str));
+		//System.out.println(n.cleanText(str));
+		
+		String t = "This McDonalds never tasted so gooooood. #starving with @beelove1027";
+		System.out.println(a.replaceAll("(.)\\1+", "$1$1"));
 		
 	}
 	

@@ -34,27 +34,42 @@ public class Normalizer {
 	 */
 	public String cleanText(String onlyRawText) throws IOException {
 		String s;
+		
+		/*Mantenimento degli HashTag */
 		//s = manageHashTag(onlyRawText);
 		
+		/*Encoding to Utf-8 */
 		byte[] utf8 = onlyRawText.getBytes("UTF-8");
 		s = new String(utf8);
 		
+		/*Rimozione delle entità HTML */
 		s = removeHTMLCharacterEntities(s);
+		
+		/*Riduzione dei caratteri duplicati (max 2) */
+		s = s.replaceAll("(.)\\1+", "$1$1");
 				
+		/*Normalizzazione del testo: hashtag, mention, url, / */
 		s = normalizeText(s);
 		
+		/*Traduzione dei caratteri dello slang */
 		ArrayList<String>  a = translateSlang(s); 
+		
+		/*Conversione in minuscolo  */
 		s = a.get(0).toLowerCase(); 
 		
+		/*Rimozione delle stopWord */
 		s = removeStopWord(s);
+		
+		/*Pulizia della punteggiatura */
 		s = removePunctuation(s);
 		
+		/*Ulteriore ciclo di normalizzazione per eliminare residui */
 		a = translateSlang(s); 
 		s = a.get(0).toLowerCase(); 
-		
 		s = removeStopWord(s);
 		s = removePunctuation(s);
 		
+		/*Riduzione degli spazi bianchi */
 		s = s.replaceAll("  ","");
 		
 		return s;
@@ -177,7 +192,7 @@ public class Normalizer {
 		String[] textS = createSingleArray(slang);
 		String[] textST = createSingleArray(slangTranslate);
 		
-		for (int i=0;i<5462;i++) {
+		for (int i=0;i<5463;i++) {
 			dict.put(textS[i],textST[i]);
 		}
 		return dict;
@@ -188,7 +203,7 @@ public class Normalizer {
 	 */
 	public String[] createSingleArray(File sFile) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(sFile));
-		String[] array = new String[5462];
+		String[] array = new String[5463];
 		String text;
 		int i=0;
 		while ((text = reader.readLine()) != null) {
