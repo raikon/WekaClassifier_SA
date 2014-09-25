@@ -1,21 +1,31 @@
 package training;
 
+import weka.core.Instance;
 import weka.core.Instances;
+import weka.core.Range;
+import weka.core.Utils;
 import weka.filters.Filter;
+import weka.filters.supervised.attribute.AddClassification;
+import weka.filters.unsupervised.attribute.AddID;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 import weka.filters.unsupervised.instance.RemoveMisclassified;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Vector;
 
 import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.bayes.NaiveBayesMultinomial;
+import weka.classifiers.evaluation.Prediction;
+import weka.classifiers.evaluation.output.prediction.AbstractOutput;
+import weka.classifiers.evaluation.output.prediction.CSV;
 import weka.classifiers.functions.SMO;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.rules.ZeroR;
 import weka.core.converters.ArffLoader.ArffReader;
+import weka.core.converters.ConverterUtils.DataSink;
 import weka.core.tokenizers.NGramTokenizer;
 
 import java.io.*;
@@ -53,6 +63,7 @@ public class myFilteredLearner {
 	 * Object that stores the classifier
 	 */
 	FilteredClassifier classifier;
+	 Instances predictedData = null;
 
 	/**
 	 * This method loads a dataset in ARFF format. If the file does not exist, or
@@ -82,7 +93,9 @@ public class myFilteredLearner {
 			trainData.setClassIndex(trainData.numAttributes() - 1);
 			filter = new StringToWordVector();	
 			filter.setAttributeIndices("first");
-
+			
+			 
+			 
 			/*Utilizzo di n-gram diversi: default n=1, quindi se filter.setTokenzer disattivato n=1*/
 			NGramTokenizer tokenizer = new NGramTokenizer(); 
 			String[] options = new String[6]; 
@@ -93,21 +106,44 @@ public class myFilteredLearner {
 			options[4] = "-delimiters"; 
 			options[5] = " \r"; 
 			tokenizer.setOptions(options);
-			//filter.setTokenizer(tokenizer);
+			filter.setTokenizer(tokenizer);
 			
 			classifier = new FilteredClassifier();
 			classifier.setFilter(filter);
 			classifier.setClassifier(new NaiveBayesMultinomial());
+			
+			AddID addid=new AddID();
+			String[] add_options = new String[2]; 
+			add_options[0] = "-C";
+		     add_options[1] = "1";
+		     addid.setOptions(add_options);                           // set options
+		     addid.setInputFormat(trainData);  
+		        
+		     Instances newData = Filter.useFilter(trainData, addid);
 		      
 			Evaluation eval = new Evaluation(trainData);
-			eval.crossValidateModel(classifier, trainData, 10, new Random(1));
+			
+			StringBuffer output = new StringBuffer();
+			AbstractOutput printout = new CSV(); 
+		    printout.setBuffer(output); 
+		    printout.setAttributes("1");
+			
+			eval.crossValidateModel(classifier, trainData, 10, new Random(1),printout, null, true);
 			
 			System.out.println(eval.toSummaryString());
 			System.out.println(eval.toClassDetailsString());
+			
+			 
+			    
+			    System.out.println(output); 
+			
+			ArrayList<Prediction> a = eval.predictions();
+			for (Prediction p : a) {
+				System.out.println(p.predicted());
+			}
+			
 
 			createConfusionMatrix(eval);
-			
-			method("output.arff");
 			
 			System.out.println("===== Evaluating on filtered (training) dataset done =====");
 		}
@@ -118,24 +154,21 @@ public class myFilteredLearner {
 	}
 	
 	public void method(String o) throws Exception {
-		// setup and run filter
+		
+		trainData.setClassIndex(trainData.numAttributes() - 1);
 		RemoveMisclassified f = new RemoveMisclassified();
+		
 		f.setClassifier(classifier);
-		f.setClassIndex(-1);
+		f.setClassIndex(trainData.numAttributes() - 1);
 		f.setNumFolds(10);
 		f.setThreshold(0.1);
 		f.setMaxIterations(1);
-		f.setInputFormat(trainData);
 		f.setInvert(true);
-		
+		f.setInputFormat(trainData);
 		Instances output = Filter.useFilter(trainData, f);
-
-		// output file
-		BufferedWriter writer = new BufferedWriter(new FileWriter(o));
-		writer.write(output.toString());
-		writer.newLine();
-		writer.flush();
-		writer.close();
+		
+		/*esporta le istanze "misClassificate in un nuovo arff"*/
+		DataSink.write(o, output);
 	}
 	
 	/* 
@@ -225,6 +258,7 @@ public class myFilteredLearner {
 		loadDataset(arff);
 		evaluate();
 		learn();
+		method("output.arff");
 		saveModel(model);
 		System.out.println();
 	}

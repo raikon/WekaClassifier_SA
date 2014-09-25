@@ -106,7 +106,7 @@ public class Start {
 		System.out.println("TweeName: "+tweetName.length);
 		
 		/* Caricamento di dati specifici*/
-		//tweetCodeText = dataset.importDataByCode(tweetName);
+		tweetCodeText = dataset.importDataByCode(tweetName);
 
 		/* Caricamento di dati casuali*/
 		List<Integer> list = new ArrayList<Integer>(tweetName.length);  
@@ -119,13 +119,13 @@ public class Start {
 
 		/* Estrazione testo e Normalizzazione del contenuto dei tweet */
 		Processor p = new Processor();
-		//tweetCodeText = p.elaborationContent(tweetCodeText);
+		tweetCodeText = p.elaborationContent(tweetCodeText);
 		
 		//printMap(tweetCodeText);
 		
 		/*Rimozione eventuali duplicati*/
 		//tweetCodeText = removeDuplicate(tweetCodeText);
-		//System.out.println("TweetList: "+tweetCodeText.size());
+		System.out.println("TweetList: "+tweetCodeText.size());
 		
 		//printMap(tweetCodeText);
 		
@@ -135,6 +135,8 @@ public class Start {
 		/* Creazione del file arff a partire dall'excel creato */
 		Excel2Arff_training ex_training  = new Excel2Arff_training();
 		ex_training.excel2arff("export2Excel.xls");
+		
+		printMap(tweetCodeText);
 	}
 	
 
