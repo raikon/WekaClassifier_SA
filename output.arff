@@ -1,0 +1,316 @@
+@relation 'export2Exce-weka.filters.unsupervised.instance.RemoveMisclassified-Wweka.classifiers.meta.FilteredClassifier -F \"weka.filters.unsupervised.attribute.StringToWordVector -R first -W 1000 -prune-rate -1.0 -N 0 -stemmer weka.core.stemmers.NullStemmer -M 1 -tokenizer \\\"weka.core.tokenizers.WordTokenizer -delimiters \\\\\\\" \\\\\\\\r\\\\\\\\n\\\\\\\\t.,;:\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\"()?!\\\\\\\"\\\"\" -W weka.classifiers.bayes.NaiveBayesMultinomial-C-1-F10-T0.1-I1'
+
+@attribute Content string
+@attribute Sentiment {positive,negative,neutral}
+
+@data
+'making learning personal proving fast food jobs developmental dead ends ',positive
+'lovin ',positive
+'wendy grilled chicken wraps really good ',positive
+'new open know excited ',positive
+'really excited ',positive
+'beef lover hate double standards behind allowing exports allowing cheeseburgers total ban open market ',positive
+'always cheers ',positive
+'dear cashier give look age limit happy meal sincerely forget toy ',positive
+'supporting seaworld inhumane orca captivity ',positive
+'need buy ',positive
+'one near can eat matter time day useful live japan time ',positive
+'special place every north side kids heart ',positive
+'woman arrested dui passing ',neutral
+'new renaissance ',neutral
+'created brand new burger enough people vote may make real ',neutral
+'still want go get breakfast taco bell hungry ',neutral
+'perfect job fake nails piercings hair ',neutral
+'sweet dolla tea drink ',neutral
+'salty got like french fries ',neutral
+'damn body cause lovin ',neutral
+'getting ',neutral
+'sounds right now ',neutral
+'bizarre locations pictures ',neutral
+'chicken look like cooked ',neutral
+'laughing loud crying car breaking sorry people hot mess ',neutral
+'whatever want can give free got billions still givin free fries ',negative
+'go europe find odb burger odb burger tang kids meal ',negative
+'sick working ',negative
+'know high shit really funny iscell guess ',negative
+'smoothies shit ',negative
+'quarter pounder cum may put ',negative
+'damn commercials come every song pandora get can get nast food low prices now please stahp ',negative
+'now atrocious treatment workers danish bigmacs best ',negative
+'naughty hungover ',negative
+'asked burger onions yet receive burger everything except onions ',negative
+'breakfast trash assface ',negative
+'finally delivers happy ',positive
+'nada need hurry fuck ',positive
+'desperately want two egg mcmuffins morning car get morning ',positive
+'just thinks coke much nicer coke get shop ',positive
+'miami lakes beautiful now ',positive
+'brother craving since earlier week definitely getting today ',positive
+'want like real brother whole restaurant ',positive
+'breakfast never tasted good laughing loud got ',positive
+'beautiful fast food joint ',positive
+'wow buti kapa really fucking miss eating burger king kentucky fried chicken mama nura shit like want go back ',positive
+'paintballing going sick first breakfast ',neutral
+'made breakfast ',neutral
+'surprised protesters work mickey ',neutral
+'feel like eating ',neutral
+'hazelnut iced coffee ',neutral
+'better supermarket farm fresh food ',neutral
+'hiring starting hour ',neutral
+'amarin plaza open police seem meeting via ',neutral
+'listening eddy eat sounds true healthy boy ',neutral
+'sometimes walk smells like ',neutral
+'told chick got sad can just happen real females ',neutral
+'way fat camp ',neutral
+'worker just saw mizuno front shirt says last thats bud ',neutral
+'sad day america people work afford eat ',negative
+'wonder time shreve city stop selling breakfast hungry ',negative
+'hilarious see burning global corporations need back quick crispy ',negative
+'eat minute feel good drinking water bitch touch face yeah dirty ass ',negative
+'metro just said wants chloroform workers ',negative
+'great now want hot guys running towards red shorts want holding maccies breakfast ',negative
+'shaking head ',negative
+'really tried cause really like drinks laughing loud ',negative
+'blessed parking lot ass shaking said go somewhere else ',positive
+'donald thompson told audience companys annual meeting legacy providing opportunities employees ',positive
+'god just sitting around much fun face can tell already highlight summer ',positive
+'going ordering water yoghurt painful ',positive
+'might commercials still going eat nasty food ',positive
+'happens minimum wage costs job orders touchscreen kiosks replace ',positive
+'fancy breakfast bed starting june can breakfast delivered door ',positive
+'crazy obsession ',positive
+'john number one customers ',neutral
+'want give senior shoutout come mr right ',neutral
+'pizza ',neutral
+'got group dudes ',neutral
+'marketing material ',neutral
+'cant trust niggas moe ',neutral
+'going marry ',neutral
+'life ',neutral
+'well finally tried salad ',neutral
+'went yesterday got double cheeseburger patties ',negative
+'want anything ',negative
+'tiara mad cause boul told chickens pork still wanted ',negative
+'even think without feeling sick anymore ',negative
+'burger king day long ',negative
+'nasty ',negative
+'thing saefoam said true chicken face hate chicken almost died ',negative
+'people like tell shit food made eating just thinking knew chicken feet yumm ',negative
+'nigga must bread cause even get job flipping meat ',negative
+'getting free though cool ',positive
+'prime ',positive
+'wanted burger king ronald changed mind vs ',positive
+'breakfast burrito morning got feelin type way ',positive
+'going go strike want hour minimum wage even get one order right get real workers ',positive
+'just found bagels mess ',positive
+'wants go nobody cool ',positive
+'always getting visitors laughing loud ',positive
+'want work can fry ',positive
+'want mom said cause got ',positive
+'wonder kid drives truck noticed cups ',neutral
+'fuck sake deeply sorry better things evil grin eat ',neutral
+'niggas end working ',neutral
+'mom just took us want somethin ',neutral
+'guess go cause refuse try taco bell laughing loud ',neutral
+'fuck like much fucking nasty ',neutral
+'doesnt put mayo burgers ',neutral
+'bitches laughing loud ',neutral
+'yes sir id like platinums bottle jack please sorry sir shit sorry ',neutral
+'please cut ties ',neutral
+'starving like fuck isaiah earlier ',neutral
+'good just leaving six flags ',neutral
+'mad bought scott something bitch money ',neutral
+'fire assface high ',negative
+'just fucked whole order though ',negative
+'give straw fuxking man ',negative
+'popular twitter impressive chef ',negative
+'priests common stick meat year old buns ',negative
+'fake ',negative
+'raised prices along way though ',negative
+'go everyday gross ',negative
+'really wanted sister came home twin telepathy swear ',positive
+'ever feel ashamed living philippines remember delivery ',positive
+'whoever wins treat ',positive
+'yes like kinds got ',positive
+'need cookies nasty ass ',positive
+'hungry go buy hope okay loveyou ',positive
+'reply tweet get free ',positive
+'heavy cravings ',positive
+'heard loving ',positive
+'say hello newest friend happy ',positive
+'woah cool selfie uniform proud ',neutral
+'bring beer right now ',neutral
+'waited years forget enjoy mighty wings everyone ',neutral
+'believe actually ',neutral
+'everyday laughing ass ',neutral
+'kind food fight stranger ',neutral
+'riding pink bike ',neutral
+'face good ',neutral
+'burger king way lovin xx ',neutral
+'friend give free shit manager looking like ',neutral
+'gives large fry instead medium ',neutral
+'since bouncers outside luton ',neutral
+'demand come forward evidence super weird gamer girl marketing campaign ads ',negative
+'matee earlier fully mugging stomach now ',negative
+'gone get got home said fugg cant eat late night unless aint eat shit day ',negative
+'fuck mom trying eat healthy get ',negative
+'yeah sound go house due taco bell hate ',negative
+'waited minutes one ice cream cone get ',negative
+'ate double deckers pizza hut failed venture ',negative
+'hot wings time kentucky fried chicken operated hours mean sometimes groove just want kentucky fried chicken ',negative
+'latest dietary advice store spare kidney cistern ',negative
+'even try brother ',negative
+'theres special place hell guy decided time breakfast ends ',negative
+'many fucking weirdos right now ',negative
+'made something us fifa world cup year ',positive
+'breakfast cure ',positive
+'dreams come true build burger ',positive
+'ate dinner happy ',positive
+'tip waitress go eat ',positive
+'heard pretty classy ',positive
+'ceo pay fair ceo said thursday employees paid fairly provided ',positive
+'ceo documentary just said meat real meat lost laughing serious diet ',positive
+'dipped cones favorite ',positive
+'wow never knew sold ',neutral
+'good ',neutral
+'disclontinued hot mustard ',neutral
+'time think ',neutral
+'dream leeds fest get delivered via mini parachutes ',neutral
+'maybe salad better choice video ',neutral
+'eat fuck ',neutral
+'fuck never heard running chicken ghetto ass allentown ',neutral
+'walking hats laughed much whole ',neutral
+'just graduated college arguing high school kids apply now ',neutral
+'ceo fast food leads hundreds protesters chanted higher wages outside ',negative
+'nasty now ',negative
+'eaten today sandwich even hungry definitely well ',negative
+'beef cause dead brain guy additives cause cancer please ',negative
+'waiting start boring ',negative
+'need new job cause straight bullshitting working shit ',negative
+'murder ',negative
+'instead eatting choose subway ',negative
+'pants say yoga ass says ',negative
+'unions realize pension funds hold stock right ',negative
+'wait eat breakfast work ',positive
+'denial normal thompson saw total compensation triple ',positive
+'anything hour nantucket right now ',positive
+'ceo made million last year says hour fair wage alternet ',positive
+'example profit wise certain rather replace cashiers automated systems instead increasing wage hour ',positive
+'crispy chicken bacon clubhouse entertainment sandwich ever laughing ass ',positive
+'brummies just ',positive
+'luke hemmings burger follow ',neutral
+'call tarzan cause swing penis penis bitch swing burger king ',neutral
+'probs go find barred hahahah ',neutral
+'got yelled angry indian carter ',neutral
+'adds value mobile payments ordering offers ',neutral
+'fucking right now ',neutral
+'work cause want happy meal ',neutral
+'original ronald clown ',neutral
+'laper brother picture ',neutral
+'luke playing probably find working ',neutral
+'baby thinking brought favorite pie ',neutral
+'hot mustard ',negative
+'creepy ass box lovin ',negative
+'just sitting watch someone marry barry better worth spent ',negative
+'want raise wages huh hires touch screen cashiers ',negative
+'work act like sauces come hahhaahah roaring ',negative
+'poison ',negative
+'feel yeah pain brotha just mistake ',negative
+'good school middle night ',negative
+'yeah commercial makes want puke chicken ',negative
+'port allen messy ',negative
+'sickest ever seen ',negative
+'got lucky wifi happy yay phil ',positive
+'news pisses early morning stop protesting outside higher pay absurd ',positive
+'crave go eating ',positive
+'paloma love night ',positive
+'ceo fast food leads ',positive
+'fuck kind want ',positive
+'tour guide okay guy gunna see iwo jima statue guide worlds largest yoo ',positive
+'ma mcvodka please supersize ',neutral
+'sound right now ',neutral
+'pays hour denmark ',neutral
+'check social media ',neutral
+'right now ',neutral
+'want girl toy boy ',neutral
+'great seen cspi talks marketing ',neutral
+'going dinner want ',neutral
+'found picture menu back day think ',neutral
+'order total great start day ',neutral
+'think feel worse family just come home might die evening ',neutral
+'hector guy really cute ',neutral
+'start day ',neutral
+'meanwhile happy headquarters ',neutral
+'ask go take say yes ',neutral
+'light skin girls will text back bring fries fanta ',neutral
+'got morning coffee whipped cream air ',negative
+'doctor told eat taco bell well actually said pretty sure know meant ',negative
+'continue come shitty ass ',negative
+'went iced coffee said mccafe stuff woww ',negative
+'looks really good actually menu boring take risks overseas cater local cusine ',negative
+'love justin love see making account pretending fucking chicken nugget ',negative
+'grandma just came home sausage muffin diet ',negative
+'eating happy meals time will make kids fat thats parents responsibility ',negative
+'breakfast extend ',negative
+'grosses ',negative
+'ceo insists fast food giant pays fair wages protesters rally guardian pay ',positive
+'just say ',positive
+'next time got try awesome hacks secret menu paleo foods ',positive
+'mom brought morning honestly happy ',positive
+'sick great idea ',positive
+'droved wedding reason eating lot ',positive
+'please keep new mascot commercials new mascot cool ',positive
+'just cause white work mean never eaten spicy food ',neutral
+'got excited coke ',neutral
+'time ',neutral
+'just got done eating box ',neutral
+'face lovin ',neutral
+'wendy shit always ',neutral
+'really gone ',neutral
+'naruto new episode episode kakashi goes ',neutral
+'ryan eating morning ',neutral
+'congratulations everyone getting jobs care wall street ',neutral
+'will always get work ands buts ',neutral
+'fuck never drinking wish need gives flying fuck ',neutral
+'son grandma know fucking ',neutral
+'nothing starts morning right like finding old coffee grinds iced tea ',negative
+'apple pies baked angry comments hell ',negative
+'simplest ad feat single word mentioned ',negative
+'hey trans fat free mean trans fat misleading packaging served toronto ',negative
+'ewkk nomore ',negative
+'matter many gross things tell still going eat can stop ',positive
+'great perk lots fun give social media shout ',positive
+'stop fucking coming macs thinking cent start pm yess ',positive
+'yes coke good usually costs buck yeah know mean ',positive
+'just want hair played back scratched hand much ask ',positive
+'just really want breakfast know laughing loud ',positive
+'cal hungry feed ',positive
+'laughing loud eat ass ',neutral
+'well oncers meeting friday beside ',neutral
+'dollar ice teas ',neutral
+'tell yeah mom stop keep driving anyways ',neutral
+'bloomfield like ',neutral
+'going will ',neutral
+'cook tf eat ',neutral
+'breakfast game snooker morning ',neutral
+'starbucks afterschool thanks information ',neutral
+'dude invegas much bigger nicer ',neutral
+'really hamburger ',neutral
+'serious burger envy right now ',neutral
+'secrets behind menu ',neutral
+'will starve eat ',neutral
+'making smarter choices hungry road ',neutral
+'th street pisses never get order right ',negative
+'fucking kidding fish chips found something cheaper ',negative
+'feature request withdraw adsense revenue coupon ',negative
+'breakfast minute go get ',negative
+'just bomb ',negative
+'believe spent much money month reduce starbucks vitamin water ',negative
+'never life swear buh duh buh really care buh lovin life ',negative
+'tell end devastating practices hurting working families around world ',negative
+'put life seaman burger god ',negative
+'anyone family working entry level job kids career ',negative
+'delivered id literally never leave home become fat never leave home anyways fat live ',negative
+'suicide note ',negative
+'something like summer compared last styrofoam cups ',negative
+'get salads judge ',negative

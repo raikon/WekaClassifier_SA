@@ -1,14 +1,20 @@
 package training;
 
 import weka.core.Instances;
+import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
+import weka.filters.unsupervised.instance.RemoveMisclassified;
+import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 
 import java.util.Random;
 import java.util.Vector;
 
+import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.bayes.NaiveBayesMultinomial;
+import weka.classifiers.functions.SMO;
 import weka.classifiers.meta.FilteredClassifier;
+import weka.classifiers.rules.ZeroR;
 import weka.core.converters.ArffLoader.ArffReader;
 import weka.core.tokenizers.NGramTokenizer;
 
@@ -81,23 +87,28 @@ public class myFilteredLearner {
 			NGramTokenizer tokenizer = new NGramTokenizer(); 
 			String[] options = new String[6]; 
 			options[0] = "-max"; 
-			options[1] = "2"; 
+			options[1] = "1"; 
 			options[2] = "-min"; 
 			options[3] = "1"; 
 			options[4] = "-delimiters"; 
 			options[5] = " \r"; 
 			tokenizer.setOptions(options);
-			filter.setTokenizer(tokenizer);
+			//filter.setTokenizer(tokenizer);
 			
 			classifier = new FilteredClassifier();
 			classifier.setFilter(filter);
 			classifier.setClassifier(new NaiveBayesMultinomial());
+		      
 			Evaluation eval = new Evaluation(trainData);
 			eval.crossValidateModel(classifier, trainData, 10, new Random(1));
+			
 			System.out.println(eval.toSummaryString());
 			System.out.println(eval.toClassDetailsString());
-			createConfusionMatrix(eval);
 
+			createConfusionMatrix(eval);
+			
+			method("output.arff");
+			
 			System.out.println("===== Evaluating on filtered (training) dataset done =====");
 		}
 		catch (Exception e) {
@@ -105,7 +116,28 @@ public class myFilteredLearner {
 			System.out.println(e);
 		}
 	}
+	
+	public void method(String o) throws Exception {
+		// setup and run filter
+		RemoveMisclassified f = new RemoveMisclassified();
+		f.setClassifier(classifier);
+		f.setClassIndex(-1);
+		f.setNumFolds(10);
+		f.setThreshold(0.1);
+		f.setMaxIterations(1);
+		f.setInputFormat(trainData);
+		f.setInvert(true);
+		
+		Instances output = Filter.useFilter(trainData, f);
 
+		// output file
+		BufferedWriter writer = new BufferedWriter(new FileWriter(o));
+		writer.write(output.toString());
+		writer.newLine();
+		writer.flush();
+		writer.close();
+	}
+	
 	/* 
 	 * metodo di supporto per stampare la matrice di confusione
 	 */
@@ -143,20 +175,21 @@ public class myFilteredLearner {
 			NGramTokenizer tokenizer = new NGramTokenizer(); 
 			String[] options = new String[6]; 
 			options[0] = "-max"; 
-			options[1] = "2"; 
+			options[1] = "1"; 
 			options[2] = "-min"; 
 			options[3] = "1"; 
 			options[4] = "-delimiters"; 
 			options[5] = " \r"; 
 			tokenizer.setOptions(options);
-			filter.setTokenizer(tokenizer);
+			//filter.setTokenizer(tokenizer);
 			
 			classifier = new FilteredClassifier();
-			classifier.setFilter(filter);
+			classifier.setFilter(filter);		
 			classifier.setClassifier(new NaiveBayesMultinomial());
 			classifier.buildClassifier(trainData);
 			// Uncomment to see the classifier
 			// System.out.println(classifier);
+
 			System.out.println("===== Training on filtered (training) dataset done =====");
 		}
 		catch (Exception e) {
@@ -199,6 +232,7 @@ public class myFilteredLearner {
 	/* 
 	 * Main di prova per la verifica della tokenizzazione in n-gram
 	*/
+	/*
 	public static void main(String[] args) throws Exception {
 		String[] testArray = new String[]{"Hello to my audience."};     
 
@@ -236,4 +270,6 @@ public class myFilteredLearner {
 			e1.printStackTrace(); 
 		}     
 	} 
+*/
 }	
+
