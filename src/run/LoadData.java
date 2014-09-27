@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,9 @@ public class LoadData {
 	/*
 	 * Importazione dati specifici attraverso codici noti 
 	 */
-	public Map<Integer,String> importDataByCode(int[] tweetCode) throws IOException  {
+	public Map<Integer,String> importDataByCode(ArrayList<Integer> code) throws IOException  {
+		Integer[] tweetCode = new Integer[code.size()];
+		code.toArray(tweetCode);
 		File directoryDataSet = new File(this.path);
 		String[] children = directoryDataSet.list();
 		if (children == null) {

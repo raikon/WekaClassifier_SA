@@ -135,14 +135,8 @@ public class myFilteredLearner {
 			
 			 
 			    
-			    System.out.println(output); 
-			
-			ArrayList<Prediction> a = eval.predictions();
-			for (Prediction p : a) {
-				System.out.println(p.predicted());
-			}
-			
-
+			//System.out.println(output); 
+		
 			createConfusionMatrix(eval);
 			
 			System.out.println("===== Evaluating on filtered (training) dataset done =====");
