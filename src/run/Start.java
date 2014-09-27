@@ -10,7 +10,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -40,26 +39,37 @@ public class Start {
 
 	public static void main(String[] args) throws Exception {
 		
-		ArrayList<Integer> code = new ArrayList<Integer>();
+		/*Caricamento dei dati del trainingSet da file*/
 		
-		BufferedReader reader = new BufferedReader(new FileReader("codiciTrainingSet.txt"));
-		String line;
+		ArrayList<Integer> code = loadTrainingCode("codiciTrainingSet.txt");
 		
-		while ((line = reader.readLine()) != null) {
-		     code.add(Integer.parseInt(line));
-		}
-		reader.close();
-		
+		/*Fase di training*/
 		train(code);
 		
 		/*Creazione modello di training*/
 			myFilteredLearner learner = new myFilteredLearner();
-			learner.createModel("fileArff.arff", "TrainingModel.dat");
+			//learner.createModel("fileArff.arff", "TrainingModel.dat");
 		
+		/*Fase di testing*/
 		//test(code);
 		
 		System.out.println("=== Classification Completed ===");
 	}
+	
+	/*
+	 * metodo per il carimento dei codici specifici del trainingSet
+	 */
+	public static ArrayList<Integer> loadTrainingCode(String path) throws NumberFormatException, IOException {
+		ArrayList<Integer> code = new ArrayList<Integer>();
+		BufferedReader reader = new BufferedReader(new FileReader(path));
+		String line;	
+		while ((line = reader.readLine()) != null) {
+			code.add(Integer.parseInt(line));
+		}
+		reader.close();
+		return code;
+	}
+	
 	
 	/*
 	* metodo per l'elabozione del trainingSet

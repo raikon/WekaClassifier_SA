@@ -49,7 +49,7 @@ public class Processor {
 			onlyRawText= e.contentFilter(rawContent);
 			if(!onlyRawText.equals("invalid")) {
 					out.writeObject(onlyRawText+"\n");
-					System.out.println(entry.getKey()+","+onlyRawText);
+					System.out.println(entry.getKey()+"¥"+onlyRawText);
 				normalizedText = n.cleanText(onlyRawText);
 					out.writeObject(normalizedText+"\n\n");
 					newMap.put((Integer) entry.getKey(),normalizedText);
