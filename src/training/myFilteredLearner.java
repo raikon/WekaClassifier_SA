@@ -135,7 +135,7 @@ public class myFilteredLearner {
 			
 			 
 			    
-			System.out.println(output); 
+			//System.out.println(output); 
 		
 			createConfusionMatrix(eval);
 			

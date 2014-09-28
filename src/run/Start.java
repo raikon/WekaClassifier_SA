@@ -47,8 +47,8 @@ public class Start {
 		train(code);
 		
 		/*Creazione modello di training*/
-			myFilteredLearner learner = new myFilteredLearner();
-			//learner.createModel("fileArff.arff", "TrainingModel.dat");
+		myFilteredLearner learner = new myFilteredLearner();
+		learner.createModel("fileArff.arff", "TrainingModel.dat");
 		
 		/*Fase di testing*/
 		//test(code);
@@ -88,23 +88,23 @@ public class Start {
 		//printMap(tweetCodeText);
 
 		/* Estrazione testo e Normalizzazione del contenuto dei tweet */
-			Processor p = new Processor();
-			tweetCodeText = p.elaborationContent(tweetCodeText);
-		
+		Processor p = new Processor();
+		tweetCodeText = p.elaborationContent(tweetCodeText);
+			
 		//printMap(tweetCodeText);
 		
 		/*Rimozione eventuali duplicati*/
-			//tweetCodeText = removeDuplicate(tweetCodeText);
-			//System.out.println("TweetList: "+tweetCodeText.size());
+		tweetCodeText = removeDuplicate(tweetCodeText);
+		//System.out.println("TweetList: "+tweetCodeText.size());
 		
 		//printMap(tweetCodeText);
 		
 		/* Salvataggio dei dati processati in un file excel*/
-			//export2Excel(tweetCodeText,"export2Excel.xls");
+		//export2Excel(tweetCodeText,"export2Excel.xls");
 
 		/* Creazione del file arff a partire dall'excel creato */
-			Excel2Arff_training ex_training  = new Excel2Arff_training();
-			//ex_training.excel2arff("export2Excel.xls");
+		Excel2Arff_training ex_training  = new Excel2Arff_training();
+		ex_training.excel2arff("export2Excel.xls");
 		
 		//printMap(tweetCodeText);
 	}
