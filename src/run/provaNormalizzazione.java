@@ -6,7 +6,7 @@ import textProcessing.Normalizer;
 
 
 
-public class prova {
+public class provaNormalizzazione {
 
 	public static void main(String[] args) throws IOException {
 		Normalizer n = new Normalizer();
