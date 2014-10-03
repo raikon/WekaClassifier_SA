@@ -50,6 +50,32 @@ public class LoadData {
 		return tweetCodeText;
 	}
 	
+	/*
+	 * Importazione di tutti i dati presenti nel dataset
+	 */
+	public Map<Integer,String> importAllData() throws IOException {
+		File directoryDataSet = new File(this.path);
+		String[] children = directoryDataSet.list();
+		if (children == null) {
+			System.out.println("Error: Either directoryDataSet does not exist or is not a directory");
+		} else {
+			for (int j=200001;j<=254646;j++) {
+				if (j==83006) {
+					j=j+1;
+				}
+				BufferedReader input = new BufferedReader(new FileReader(this.path+j));
+				String text;
+				StringBuffer buffer = new StringBuffer();
+				while ((text = input.readLine()) != null)
+					buffer.append(text + "\n");
+				input.close();
+				String tweetText = buffer.toString();
+				tweetCodeText.put(j, tweetText);
+			}
+		}
+		return tweetCodeText;
+	}
+	
 	
 	/*
 	 * Importazione dati casuali attraverso la randomizzazione

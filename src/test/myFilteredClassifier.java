@@ -156,9 +156,11 @@ import org.apache.poi.ss.usermodel.Row;
 		instances = i;
 		int j=1;
 		String sentiment,tweet;
+		System.out.println("QUI: "+instances.numInstances());
 		try {
 			System.out.println("\n Number of valid instances analyzed: "+instances.numInstances()+"\n");
 			for(int k=0;k<instances.numInstances();k++) {
+
 				System.out.println("===== Classified instance =====");
 				
 				double pred = classifier.classifyInstance(instances.instance(k));
@@ -200,7 +202,6 @@ import org.apache.poi.ss.usermodel.Row;
 			cell.setCellValue(key);
 			Cell cellSent = row.createCell(cellnum++);
 			cellSent.setCellValue(result.get(key));
-
 		}
 		try {
 			FileOutputStream out = new FileOutputStream(new File(nameFile));

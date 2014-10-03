@@ -1,8 +1,6 @@
 package textProcessing;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -41,8 +39,6 @@ public class Processor {
 
 		HashMap<Integer,String> newMap = createCopy(finalMap); 
 
-		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("TextCfr.xls"));
-
 		String rawContent;
 		String onlyRawText;
 		String normalizedText;
@@ -53,19 +49,17 @@ public class Processor {
 			ex = gson.fromJson(rawContent,Example.class);
 			if(ex.getLang().equals("en")) {
 				onlyRawText = ex.getText();
-					out.writeObject(onlyRawText+"\n");
 				//System.out.println(entry.getKey()+","+onlyRawText);
 				normalizedText = n.cleanText(onlyRawText);
-					out.writeObject(normalizedText+"\n\n");
 				newMap.put((Integer) entry.getKey(),normalizedText);
+				//System.out.println(entry.getKey()+","+normalizedText+","+ex.getCreatedAt());
 			}
 			else{ 
 				newMap.remove(entry.getKey());
 				System.out.println("the language of the tweet: ["+entry.getKey()+"] is not treated by the software");
 			}
-
 		}
-		out.close();
+
 		return newMap;
 	}
 

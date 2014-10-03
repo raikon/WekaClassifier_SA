@@ -1,31 +1,14 @@
 package training;
 
-import weka.core.Instance;
 import weka.core.Instances;
-import weka.core.Range;
-import weka.core.Utils;
-import weka.filters.Filter;
-import weka.filters.supervised.attribute.AddClassification;
-import weka.filters.unsupervised.attribute.AddID;
 import weka.filters.unsupervised.attribute.StringToWordVector;
-import weka.filters.unsupervised.instance.RemoveMisclassified;
-import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
-
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.Vector;
-
-import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.bayes.NaiveBayesMultinomial;
-import weka.classifiers.evaluation.Prediction;
 import weka.classifiers.evaluation.output.prediction.AbstractOutput;
 import weka.classifiers.evaluation.output.prediction.CSV;
-import weka.classifiers.functions.SMO;
 import weka.classifiers.meta.FilteredClassifier;
-import weka.classifiers.rules.ZeroR;
 import weka.core.converters.ArffLoader.ArffReader;
-import weka.core.converters.ConverterUtils.DataSink;
 import weka.core.tokenizers.NGramTokenizer;
 
 import java.io.*;
@@ -94,8 +77,6 @@ public class myFilteredLearner {
 			filter = new StringToWordVector();	
 			filter.setAttributeIndices("first");
 			
-			 
-			 
 			/*Utilizzo di n-gram diversi: default n=1, quindi se filter.setTokenzer disattivato n=1*/
 			NGramTokenizer tokenizer = new NGramTokenizer(); 
 			String[] options = new String[6]; 
@@ -111,18 +92,10 @@ public class myFilteredLearner {
 			classifier = new FilteredClassifier();
 			classifier.setFilter(filter);
 			classifier.setClassifier(new NaiveBayesMultinomial());
-			
-			AddID addid=new AddID();
-			String[] add_options = new String[2]; 
-			add_options[0] = "-C";
-		     add_options[1] = "1";
-		     addid.setOptions(add_options);                           // set options
-		     addid.setInputFormat(trainData);  
-		        
-		     Instances newData = Filter.useFilter(trainData, addid);
 		      
 			Evaluation eval = new Evaluation(trainData);
 			
+			/*Necessario per stampare i dettagli di predizione del valutatore*/
 			StringBuffer output = new StringBuffer();
 			AbstractOutput printout = new CSV(); 
 		    printout.setBuffer(output); 
@@ -133,9 +106,7 @@ public class myFilteredLearner {
 			System.out.println(eval.toSummaryString());
 			System.out.println(eval.toClassDetailsString());
 			
-			 
-			    
-			//System.out.println(output); 
+			System.out.println(output); 
 		
 			createConfusionMatrix(eval);
 			
@@ -146,25 +117,7 @@ public class myFilteredLearner {
 			System.out.println(e);
 		}
 	}
-	
-	public void method(String o) throws Exception {
-		
-		trainData.setClassIndex(trainData.numAttributes() - 1);
-		RemoveMisclassified f = new RemoveMisclassified();
-		
-		f.setClassifier(classifier);
-		f.setClassIndex(trainData.numAttributes() - 1);
-		f.setNumFolds(10);
-		f.setThreshold(0.1);
-		f.setMaxIterations(1);
-		f.setInvert(true);
-		f.setInputFormat(trainData);
-		Instances output = Filter.useFilter(trainData, f);
-		
-		/*esporta le istanze "misClassificate in un nuovo arff"*/
-		DataSink.write(o, output);
-	}
-	
+
 	/* 
 	 * metodo di supporto per stampare la matrice di confusione
 	 */
@@ -181,9 +134,9 @@ public class myFilteredLearner {
 			if (row_i==0)
 				System.out.println("a = positive");
 			if (row_i==1)
-				System.out.println("b = neutral");
+				System.out.println("b = negative");
 			if (row_i==2) 
-				System.out.println("c = negative");
+				System.out.println("c = neutral");
 		}
 		System.out.println("\n");
 	}
@@ -252,7 +205,6 @@ public class myFilteredLearner {
 		loadDataset(arff);
 		evaluate();
 		learn();
-		method("output.arff");
 		saveModel(model);
 		System.out.println();
 	}

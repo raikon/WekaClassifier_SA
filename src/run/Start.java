@@ -51,6 +51,7 @@ public class Start {
 		learner.createModel("fileArff.arff", "TrainingModel.dat");
 		
 		/*Fase di testing*/
+		
 		//test(code);
 		
 		System.out.println("=== Classification Completed ===");
@@ -95,7 +96,6 @@ public class Start {
 		
 		/*Rimozione eventuali duplicati*/
 		tweetCodeText = removeDuplicate(tweetCodeText);
-		//System.out.println("TweetList: "+tweetCodeText.size());
 		
 		//printMap(tweetCodeText);
 		
@@ -125,7 +125,11 @@ public class Start {
 		//tweetCodeText = dataset.importDataByCode(tweetName);
 		
 		/* Caricamento di dati casuali*/
-		tweetCodeText = dataset.importDataRandom(15,code);
+		//tweetCodeText = dataset.importDataRandom(15,code);
+		
+		/* Caricamento di tutti i dati del dataset*/
+		tweetCodeText = dataset.importAllData();
+		System.out.println("Dataset Capacity: "+tweetCodeText.size());
 
 		//printMap(tweetCodeText);
 
@@ -133,11 +137,15 @@ public class Start {
 		Processor p = new Processor();
 		tweetCodeText = p.elaborationContent(tweetCodeText);
 		
-		printMap(tweetCodeText);
+		System.out.println("Dataset Capacity (After TextProcessing): "+tweetCodeText.size());
+		
+		//printMap(tweetCodeText);
 		
 		/*Rimozione eventuali duplicati*/
 		tweetCodeText = removeDuplicate(tweetCodeText);
-		//System.out.println("TweetList: "+tweetCodeText.size());
+		System.out.println("TweetList: "+tweetCodeText.size());
+		
+		//printMap(tweetCodeText);
 		
 		/* Salvataggio dei dati processati in un file excel*/
 		export2Excel(tweetCodeText,"export2Excel_test.xls");
