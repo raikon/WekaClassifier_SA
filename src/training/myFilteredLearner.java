@@ -106,6 +106,7 @@ public class myFilteredLearner {
 			System.out.println(eval.toSummaryString());
 			System.out.println(eval.toClassDetailsString());
 			
+			/*stampa valori di predizione*/
 			System.out.println(output); 
 		
 			createConfusionMatrix(eval);

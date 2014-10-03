@@ -51,29 +51,6 @@ import org.apache.poi.ss.usermodel.Row;
 	 * Object that stores the classifier.
 	 */
 	FilteredClassifier classifier;
-		
-	/**
-	 * This method loads the text to be classified.
-	 * @param fileName The name of the file that stores the text.
-	 */	
-	/*
-	public void load(String fileName) {
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(fileName));
-			String line;
-			text = "";
-			while ((line = reader.readLine()) != null) {
-                text = text + " " + line;
-            }
-			System.out.println("===== Loaded text data: " + fileName + " =====");
-			reader.close();
-			System.out.println(text);
-		}
-		catch (IOException e) {
-			System.out.println("Problem found when reading: " + fileName);
-		}
-	}
-	*/
 			
 	/**
 	 * This method loads the model to be used as classifier.
@@ -93,59 +70,6 @@ import org.apache.poi.ss.usermodel.Row;
 		}
 	}
 	
-	
-	/**
-	 * This method creates the instance to be classified, from the text that has been read.
-	 * @throws IOException 
-	 */
-	/*
-	public void makeInstance() throws IOException {
-		// Create the attributes, class and text
-		FastVector fvNominalVal = new FastVector(3);
-		fvNominalVal.addElement("positive");
-		fvNominalVal.addElement("neutral");
-		fvNominalVal.addElement("negative");
-		Attribute attribute1 = new Attribute("Sentiment", fvNominalVal);
-		Attribute attribute2 = new Attribute("Content",(FastVector) null);
-		// Create list of instances with one element
-		FastVector fvWekaAttributes = new FastVector(2);
-		fvWekaAttributes.addElement(attribute1);
-		fvWekaAttributes.addElement(attribute2);
-		instances = new Instances("Test relation", fvWekaAttributes, 1);           
-		// Set class index
-		instances.setClassIndex(1);
-		// Create and add the instance
-		String[] s = readInstance("try.txt");
-		int j = s.length;
-		int i = 0;
-		while(j!=0) {
-			DenseInstance instance = new DenseInstance(2);
-			instance.setValue(attribute2, s[i]);
-			//System.out.println(s[i]);
-			//Another way to do it:
-			//instance.setValue((Attribute)fvWekaAttributes.elementAt(1), text);
-			instances.add(instance);
-			j--;
-			i++;
-		}
- 		System.out.println("===== Instance created with reference dataset =====");
-		System.out.println("INSTANCE: "+instances);
-	}
-	
-	public String[] readInstance(String file) throws IOException{
-		String[] s = new String[20];
-		FileReader f;
-	    f=new FileReader(file);
-	    BufferedReader b=new BufferedReader(f);
-	    for(int i=0;i<20;i++) {
-	    	s[i]=b.readLine();
-	    }
-	    b.close();
-	    return s;
-	}
-	
-	*/
-	
 	/**
 	 * This method performs the classification of the instance.
 	 * Output is done at the command-line.
@@ -164,6 +88,7 @@ import org.apache.poi.ss.usermodel.Row;
 				System.out.println("===== Classified instance =====");
 				
 				double pred = classifier.classifyInstance(instances.instance(k));
+				double[] distributions = classifier.distributionForInstance(instances.instance(k));
 				
 				tweet = instances.attribute(0).value(j);
 				/*INSERIRE QUI eventuali forzature di predizione a causa delle emoticon */
@@ -173,7 +98,12 @@ import org.apache.poi.ss.usermodel.Row;
 					sentiment = instances.classAttribute().value((int) pred);
 				
 				System.out.println("Instance("+k+"): "+tweet);
-				System.out.println("Class predicted: " + sentiment+"\n");
+				System.out.println("Class predicted: " + sentiment);
+				
+				/*stampa dei valori di predizione*/
+				double predictionValue = distributions[(int) pred];
+				System.out.println("Distribution: "+predictionValue+"\n");
+				
 				result.put(tweet,sentiment);
 				j++;
 			}
@@ -224,9 +154,7 @@ import org.apache.poi.ss.usermodel.Row;
 	 * @throws IOException 
 	 */
 	public void makeClassification (Instances arff, String model) throws IOException {
-			//load(arff);
 			loadModel(model);
-			//makeInstance();
 			classify(arff);
 	}
 }	

@@ -1,0 +1,30 @@
+@relation export2Excel_tes
+
+@attribute Content string
+@attribute Sentiment {positive,neutral,negative}
+
+@data
+'want ',positive
+'employees cared much workin protestin hour workin ',positive
+'ask tuck tonight breakfast burrito taco bell doesn ',positive
+'also saw guy looked like final fantasy except girlfriend putting make mcdon ',positive
+'laughing loud just seen twitter people think fat now never called nice way ',positive
+'serving fries day biggest load bull shit ever experienced ',positive
+'hands chicken sauce ',positive
+'hate ',positive
+'ve created brand new burger enough people vote may make real ',positive
+'someone literally just asked wanted buy weed never laughed hard ',positive
+'less last summer tbwa paris unveiled bold campaign consisted ',positive
+'median hourly wage among employees years experience htt ',positive
+'',positive
+'just got ',positive
+'need bad ',positive
+'burgers fries ',positive
+'crush chicken ',positive
+'went eischens okarche today two people working full house busting ass even make hour entitled ',positive
+'fries back fries ',positive
+'sad got food broke sister buy broke just going watch eatin cry ',positive
+'add golden arches dividend portfolio ',positive
+'ahh ',positive
+'got chinese ',positive
+'want taco bell chinese food pizza still skinny ',positive

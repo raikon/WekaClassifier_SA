@@ -44,15 +44,15 @@ public class Start {
 		ArrayList<Integer> code = loadTrainingCode("codiciTrainingSet.txt");
 		
 		/*Fase di training*/
-		train(code);
+		//train(code);
 		
 		/*Creazione modello di training*/
 		myFilteredLearner learner = new myFilteredLearner();
-		learner.createModel("fileArff.arff", "TrainingModel.dat");
+		//learner.createModel("fileArff.arff", "TrainingModel.dat");
 		
 		/*Fase di testing*/
 		
-		//test(code);
+		test(code);
 		
 		System.out.println("=== Classification Completed ===");
 	}
@@ -116,7 +116,7 @@ public class Start {
 	public static void test(ArrayList<Integer> code) throws InvalidFormatException, ParseException, IOException {
 		/* 
 		 *  Caricamento dataset 
-		 *  Due modalità: caricamento file specifici, caricamento file casuali
+		 *  Tre modalità: caricamento file specifici, caricamento file casuali, tutto il dataset
 		 */
 		LoadData dataset = new LoadData("C:/Users/SIS/Desktop/Università/Progetti/Mery/dataset/mcdonalds/");
 		Map<Integer, String> tweetCodeText = new HashMap<>();
@@ -125,10 +125,10 @@ public class Start {
 		//tweetCodeText = dataset.importDataByCode(tweetName);
 		
 		/* Caricamento di dati casuali*/
-		//tweetCodeText = dataset.importDataRandom(15,code);
+		tweetCodeText = dataset.importDataRandom(30,code);
 		
 		/* Caricamento di tutti i dati del dataset*/
-		tweetCodeText = dataset.importAllData();
+		//tweetCodeText = dataset.importAllData();
 		System.out.println("Dataset Capacity: "+tweetCodeText.size());
 
 		//printMap(tweetCodeText);
